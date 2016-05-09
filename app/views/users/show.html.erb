@@ -1,0 +1,12 @@
+<h1>Hello, <%= @user.name %></h1>
+
+<% if @user.admin %>
+ <p><%= "ADMIN" %></p>
+<% end %>
+<p>Tickets: <%= @user.tickets %></p>
+<p>Mood: <%= @user.mood %></p>
+<p>Height: <%= @user.height %> inches</p>
+<br>
+<p><%= link_to "See attractions", attractions_path %></p>
+<br><br>
+<p><%= link_to "Log Out", '/logout' %></p>
