@@ -18,6 +18,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    @ride = Ride.create(user_id: @user.id, attraction_id: params[:attraction][:id])
+    ride_result_message = @ride.take_ride
+    flash[:notice] = "#{ride_result_message}"
+    redirect_to user_path(@user)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :admin)

@@ -5,10 +5,11 @@ class Ride < ActiveRecord::Base
   def take_ride
     check_user = check_user_height_and_tickets
     #if the user checks out, it returns true. else, it returns a message
-    if check_user == true
+    if check_user.include? ("Thanks")
       adjust_user_ticket_number
       update_user_nausea
       update_user_happiness
+      "Thanks for riding the #{attraction.name}!"
     else
       check_user
     end
@@ -22,7 +23,7 @@ class Ride < ActiveRecord::Base
     elsif user.height < attraction.min_height
       "Sorry. You are not tall enough to ride the #{attraction.name}." 
     else 
-      true
+      "Thanks for riding the #{attraction.name}!"
     end
   end
 
